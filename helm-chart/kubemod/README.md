@@ -15,7 +15,7 @@ This chart bootstraps a kubemod deployment and service on a Kubernetes cluster u
 To install the chart with the release name `my-release`:
 
 ```bash
-$ helm repo add kubemod https://kubemod.github.io/kubemod-helm-charts
+$ helm repo add kubemod https://kubemod.github.io/kubemod-helms
 $ helm install my-release kubemod/kubemod
 ```
 
