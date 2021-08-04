@@ -1,0 +1,6 @@
+# Artifact Hub repository metadata file
+repositoryID: xxx
+owners:
+  - name: desaintmartin
+    email: cedric@desaintmartin.fr
+  - name: vassilvk
