@@ -1,11 +1,12 @@
 apiVersion: v2
 name: kubemod
 description: KubeMod is a universal Kubernetes mutating operator.
-version: 0.1.7
+version: 0.1.8
 appVersion: "0.13.0"
 home: https://github.com/kubemod/kubemod
 sources:
   - https://github.com/kubemod/kubemod
+  - https://github.com/kubemod/kubemod-helm-chart
 maintainers:
   - name: desaintmartin
     email: cedric@desaintmartin.fr
