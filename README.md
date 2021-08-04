@@ -1,12 +1,12 @@
-# kubemod-helm-chart
+# kubemod-helm
 
-For hosting kubemod-helm-chart to allow for the deployment of kubemod/kubemod
+For hosting kubemod-helm to allow for the deployment of kubemod/kubemod
 
 ## Helm Chart
 
 [![Artifact HUB](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/kubemod)](https://artifacthub.io/packages/search?repo=kubemod)
 
-__repository:__ https://kubemod.github.io/kubemod-helm-chart
+__repository:__ https://kubemod.github.io/kubemod-helm
 
 __name:__ kubemod
 
