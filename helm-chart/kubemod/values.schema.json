@@ -95,6 +95,20 @@
         },
         "tolerations": {
             "type": "array"
+        },
+        "webhook": {
+            "type": "object",
+            "properties": {
+                "failurePolicy": {
+                    "type": "string"
+                },
+                "namespaceSelector": {
+                    "type": "object"
+                },
+                "resources": {
+                    "type": "array"
+                }
+            }
         }
     }
 }

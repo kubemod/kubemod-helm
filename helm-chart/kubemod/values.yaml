@@ -66,6 +66,41 @@ tolerations: []
 
 affinity: {}
 
+# MutatingWebhookConfiguration
+webhook:
+  # See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#mutatingwebhook-v1-admissionregistration-k8s-io
+  failurePolicy: Ignore
+  # See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#labelselector-v1-meta
+  namespaceSelector:
+    matchExpressions:
+    - key: admission.kubemod.io/ignore
+      operator: NotIn
+      values:
+      - "true"
+  # See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#rulewithoperations-v1-admissionregistration-k8s-io
+  resources:
+  - namespaces
+  - nodes
+  - configmaps
+  - persistentvolumeclaims
+  - persistentvolumes
+  - secrets
+  - services
+  - daemonsets
+  - deployments
+  - replicasets
+  - statefulsets
+  - horizontalpodautoscalers
+  - ingresses
+  - pods
+  - cronjobs
+  - jobs
+  - serviceaccounts
+  - clusterrolebindings
+  - clusterroles
+  - rolebindings
+  - roles
+
 modrules: []
 # Example:
 # - name: pause-everything
