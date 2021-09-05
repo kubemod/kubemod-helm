@@ -1,7 +1,7 @@
 apiVersion: v2
 name: kubemod
 description: KubeMod is a universal Kubernetes mutating operator.
-version: 0.1.9
+version: 0.2.0
 appVersion: "0.13.0"
 home: https://github.com/kubemod/kubemod
 sources:

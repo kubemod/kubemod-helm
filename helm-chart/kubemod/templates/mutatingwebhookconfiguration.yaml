@@ -36,15 +36,11 @@ webhooks:
       name: {{ include "kubemod.fullname" . }}-webhook-service
       namespace: {{ .Release.Namespace }}
       path: /dragnet-webhook
-  failurePolicy: Ignore
+  failurePolicy: {{ .Values.webhook.failurePolicy }}
   matchPolicy: Equivalent
   name: dragnet.kubemod.io
   namespaceSelector:
-    matchExpressions:
-    - key: admission.kubemod.io/ignore
-      operator: NotIn
-      values:
-      - "true"
+    {{- toYaml .Values.webhook.namespaceSelector | nindent 4 }}
   reinvocationPolicy: IfNeeded
   rules:
   - apiGroups:
@@ -55,27 +51,7 @@ webhooks:
     - CREATE
     - UPDATE
     resources:
-    - namespaces
-    - nodes
-    - configmaps
-    - persistentvolumeclaims
-    - persistentvolumes
-    - secrets
-    - services
-    - daemonsets
-    - deployments
-    - replicasets
-    - statefulsets
-    - horizontalpodautoscalers
-    - ingresses
-    - pods
-    - cronjobs
-    - jobs
-    - serviceaccounts
-    - clusterrolebindings
-    - clusterroles
-    - rolebindings
-    - roles
+    {{- toYaml .Values.webhook.resources | nindent 4 }}
     scope: '*'
   sideEffects: None
   timeoutSeconds: 3
