@@ -3,6 +3,24 @@ entries:
   kubemod:
   - apiVersion: v2
     appVersion: 0.13.0
+    created: "2022-01-11T16:48:53.091223835Z"
+    description: KubeMod is a universal Kubernetes mutating operator.
+    digest: 4986c389d1012dd70c709749dc7afac6da834941befd54895dce1ef35902b59a
+    home: https://github.com/kubemod/kubemod
+    kubeVersion: '>= 1.16.0'
+    maintainers:
+    - email: cedric@desaintmartin.fr
+      name: desaintmartin
+    - name: vassilvk
+    name: kubemod
+    sources:
+    - https://github.com/kubemod/kubemod
+    - https://github.com/kubemod/kubemod-helm
+    urls:
+    - https://github.com/kubemod/kubemod-helm/releases/download/kubemod-0.2.2/kubemod-0.2.2.tgz
+    version: 0.2.2
+  - apiVersion: v2
+    appVersion: 0.13.0
     created: "2021-09-07T05:29:36.274480934Z"
     description: KubeMod is a universal Kubernetes mutating operator.
     digest: 960148418e36359539f029f4f732c9c098dc028dd6a081ccf16e2e7683041393
@@ -69,4 +87,4 @@ entries:
     urls:
     - https://github.com/kubemod/kubemod-helm-chart/releases/download/kubemod-0.1.8/kubemod-0.1.8.tgz
     version: 0.1.8
-generated: "2021-09-07T05:29:36.274495534Z"
+generated: "2022-01-11T16:48:53.091245835Z"
