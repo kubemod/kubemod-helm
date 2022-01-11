@@ -3,6 +3,7 @@ name: kubemod
 description: KubeMod is a universal Kubernetes mutating operator.
 version: 0.2.2
 appVersion: "0.13.0"
+kubeVersion: ">= 1.16.0"
 home: https://github.com/kubemod/kubemod
 sources:
   - https://github.com/kubemod/kubemod
