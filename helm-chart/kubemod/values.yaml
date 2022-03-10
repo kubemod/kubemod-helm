@@ -69,7 +69,9 @@ tolerations: []
 affinity: {}
 
 # MutatingWebhookConfiguration
-webhook:
+webhooks:
+- # This will be prepended to `.dragnet.kubemod.io` as the name of the webhook. If unspecified the webhook name will be `webhook<index>.dragnet.kubemod.io`
+  name: builtin
   # See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#mutatingwebhook-v1-admissionregistration-k8s-io
   failurePolicy: Ignore
   # See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#labelselector-v1-meta
@@ -80,28 +82,36 @@ webhook:
       values:
       - "true"
   # See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#rulewithoperations-v1-admissionregistration-k8s-io
-  resources:
-  - namespaces
-  - nodes
-  - configmaps
-  - persistentvolumeclaims
-  - persistentvolumes
-  - secrets
-  - services
-  - daemonsets
-  - deployments
-  - replicasets
-  - statefulsets
-  - horizontalpodautoscalers
-  - ingresses
-  - pods
-  - cronjobs
-  - jobs
-  - serviceaccounts
-  - clusterrolebindings
-  - clusterroles
-  - rolebindings
-  - roles
+  rules:
+  - apiGroups:
+    - ""
+    apiVersions:
+    - v1
+    operations:
+    - CREATE
+    - UPDATE
+    resources:
+    - namespaces
+    - nodes
+    - configmaps
+    - persistentvolumeclaims
+    - persistentvolumes
+    - secrets
+    - services
+    - daemonsets
+    - deployments
+    - replicasets
+    - statefulsets
+    - horizontalpodautoscalers
+    - ingresses
+    - pods
+    - cronjobs
+    - jobs
+    - serviceaccounts
+    - clusterrolebindings
+    - clusterroles
+    - rolebindings
+    - roles
 
 modrules: []
 # Example:

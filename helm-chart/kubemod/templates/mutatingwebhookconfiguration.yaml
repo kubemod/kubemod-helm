@@ -28,30 +28,6 @@ webhooks:
     - modrules
   sideEffects: None
   timeoutSeconds: 5
-- admissionReviewVersions:
-  - v1beta1
-  clientConfig:
-    caBundle: Cg==
-    service:
-      name: {{ include "kubemod.fullname" . }}-webhook-service
-      namespace: {{ .Release.Namespace }}
-      path: /dragnet-webhook
-  failurePolicy: {{ .Values.webhook.failurePolicy }}
-  matchPolicy: Equivalent
-  name: dragnet.kubemod.io
-  namespaceSelector:
-    {{- toYaml .Values.webhook.namespaceSelector | nindent 4 }}
-  reinvocationPolicy: IfNeeded
-  rules:
-  - apiGroups:
-    - '*'
-    apiVersions:
-    - '*'
-    operations:
-    - CREATE
-    - UPDATE
-    resources:
-    {{- toYaml .Values.webhook.resources | nindent 4 }}
-    scope: '*'
-  sideEffects: None
-  timeoutSeconds: 3
+{{- range .Values.webhooks }}
+{{- template "kubemod.webhook" (merge (dict "webhookIndex" $webhookIndex) (dict "webhook" .) $ ) }}
+{{- end }}

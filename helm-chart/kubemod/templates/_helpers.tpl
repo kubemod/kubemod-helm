@@ -61,33 +61,22 @@ Create the name of the service account to use
 {{- end }}
 {{- end }}
 
-{{- define "kubemod.webhook.name" }}
-{{- if .name }}{{ .name }}{{- else }}webhook{{ .webhookIndex }}{{- end }}
-{{- end }}
-
-{{- define "kubemod.webhook" }}
+{{- define "kubemod.webhook.admissionReviewVersions" }}
 - admissionReviewVersions:
   - v1beta1
+{{- end }}
+
+{{- define "kubemod.webhook.clientConfig" }}
   clientConfig:
     caBundle: Cg==
     service:
       name: {{ include "kubemod.fullname" . }}-webhook-service
       namespace: {{ .Release.Namespace }}
       path: /dragnet-webhook
-  failurePolicy: {{ .failurePolicy | default "Fail" }}
-  matchPolicy: Equivalent
-  name: {{ include "kubemod.webhook.name" . }}.dragnet.kubemod.io
-  {{- with .namespaceSelector }}
-  namespaceSelector:
-    {{- toYaml . | nindent 4 }}
-  {{- end }}
-  {{- with .objectSelector }}
-  objectSelector:
-    {{- toYaml . | nindent 4 }}
-  {{- end }}
-  reinvocationPolicy: {{ .reinvocationPolicy | default "IfNeeded" }}
-  rules:
-  {{- toYaml .rules | nindent 2 }}
-  sideEffects: None
-  timeoutSeconds: 3
+{{- end }}
+
+{{- define "kubemod.webhook" }}
+{{ include "kubemod.webhook.admissionReviewVersions" . }}
+{{ include "kubemod.webhook.clientConfig" . }}
+{{ toYaml .webhook | nindent 2}}
 {{- end }}
