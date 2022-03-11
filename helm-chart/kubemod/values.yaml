@@ -70,8 +70,7 @@ affinity: {}
 
 # MutatingWebhookConfiguration
 webhooks:
-- # This will be prepended to `.dragnet.kubemod.io` as the name of the webhook. If unspecified the webhook name will be `webhook<index>.dragnet.kubemod.io`
-  name: builtin
+- name: dragnet.webhook.io
   # See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#mutatingwebhook-v1-admissionregistration-k8s-io
   failurePolicy: Ignore
   # See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#labelselector-v1-meta
