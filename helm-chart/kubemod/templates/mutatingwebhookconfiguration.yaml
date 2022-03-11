@@ -29,5 +29,5 @@ webhooks:
   sideEffects: None
   timeoutSeconds: 5
 {{- range .Values.webhooks }}
-{{- template "kubemod.webhook" (merge (dict "webhookIndex" $webhookIndex) (dict "webhook" .) $ ) }}
+{{- template "kubemod.webhook" (merge (dict "webhook" .) $ ) }}
 {{- end }}
