@@ -4,6 +4,10 @@ metadata:
   name: {{ include "kubemod.fullname" . }}-mutating-webhook-configuration
   labels:
     {{- include "kubemod.labels" . | nindent 4 }}
+  {{- with .Values.mutatingWebhookConfiguration.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
   creationTimestamp: null
 webhooks:
 - admissionReviewVersions:
