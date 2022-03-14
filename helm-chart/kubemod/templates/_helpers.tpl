@@ -60,3 +60,25 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{- define "kubemod.webhook.admissionReviewVersions" }}
+- admissionReviewVersions:
+  - v1beta1
+{{- end }}
+
+{{- define "kubemod.webhook.clientConfig" }}
+  clientConfig:
+    caBundle: Cg==
+    service:
+      name: {{ include "kubemod.fullname" . }}-webhook-service
+      namespace: {{ .Release.Namespace }}
+      path: /dragnet-webhook
+{{- end }}
+
+{{- define "kubemod.webhook" }}
+{{- if contains "admissionReviewVersions:" (toYaml .webhook) }}{{- fail "Webhooks must not contain admissionReviewVersions" }}{{- end }}
+{{- if contains "clientConfig:" (toYaml .webhook) }}{{- fail "Webhooks must not contain clientConfig" }}{{- end }}
+{{ include "kubemod.webhook.admissionReviewVersions" . }}
+{{ include "kubemod.webhook.clientConfig" . }}
+{{ toYaml .webhook | nindent 2}}
+{{- end }}

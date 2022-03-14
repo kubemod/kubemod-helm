@@ -13,7 +13,7 @@ job:
   image:
     repository: kubemod/kubemod-crt
     pullPolicy: IfNotPresent
-    tag: "v1.1.1"
+    tag: "v1.1.4"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -69,7 +69,9 @@ tolerations: []
 affinity: {}
 
 # MutatingWebhookConfiguration
-webhook:
+mutatingWebhookConfiguration: {}
+webhooks:
+- name: dragnet.webhook.io
   # See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#mutatingwebhook-v1-admissionregistration-k8s-io
   failurePolicy: Ignore
   # See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#labelselector-v1-meta
@@ -80,28 +82,36 @@ webhook:
       values:
       - "true"
   # See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#rulewithoperations-v1-admissionregistration-k8s-io
-  resources:
-  - namespaces
-  - nodes
-  - configmaps
-  - persistentvolumeclaims
-  - persistentvolumes
-  - secrets
-  - services
-  - daemonsets
-  - deployments
-  - replicasets
-  - statefulsets
-  - horizontalpodautoscalers
-  - ingresses
-  - pods
-  - cronjobs
-  - jobs
-  - serviceaccounts
-  - clusterrolebindings
-  - clusterroles
-  - rolebindings
-  - roles
+  rules:
+  - apiGroups:
+    - ""
+    apiVersions:
+    - v1
+    operations:
+    - CREATE
+    - UPDATE
+    resources:
+    - namespaces
+    - nodes
+    - configmaps
+    - persistentvolumeclaims
+    - persistentvolumes
+    - secrets
+    - services
+    - daemonsets
+    - deployments
+    - replicasets
+    - statefulsets
+    - horizontalpodautoscalers
+    - ingresses
+    - pods
+    - cronjobs
+    - jobs
+    - serviceaccounts
+    - clusterrolebindings
+    - clusterroles
+    - rolebindings
+    - roles
 
 modrules: []
 # Example:
