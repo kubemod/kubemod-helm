@@ -69,6 +69,7 @@ tolerations: []
 affinity: {}
 
 # MutatingWebhookConfiguration
+mutatingWebhookConfiguration: {}
 webhooks:
 - name: dragnet.webhook.io
   # See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#mutatingwebhook-v1-admissionregistration-k8s-io

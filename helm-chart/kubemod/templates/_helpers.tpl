@@ -76,6 +76,8 @@ Create the name of the service account to use
 {{- end }}
 
 {{- define "kubemod.webhook" }}
+{{- if contains "admissionReviewVersions:" (toYaml .webhook) }}{{- fail "Webhooks must not contain admissionReviewVersions" }}{{- end }}
+{{- if contains "clientConfig:" (toYaml .webhook) }}{{- fail "Webhooks must not contain clientConfig" }}{{- end }}
 {{ include "kubemod.webhook.admissionReviewVersions" . }}
 {{ include "kubemod.webhook.clientConfig" . }}
 {{ toYaml .webhook | nindent 2}}
