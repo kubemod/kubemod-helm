@@ -7,7 +7,7 @@ replicaCount: 1
 image:
   repository: kubemod/kubemod
   pullPolicy: IfNotPresent
-  tag: "v0.14.0"
+  tag: "v0.15.0-rc-1"
 
 job:
   # Deploy the KubeMod certificate generation job
@@ -15,7 +15,7 @@ job:
   image:
     repository: kubemod/kubemod-crt
     pullPolicy: IfNotPresent
-    tag: "v1.1.3"
+    tag: "v1.2.0"
 
 imagePullSecrets: []
 nameOverride: ""
