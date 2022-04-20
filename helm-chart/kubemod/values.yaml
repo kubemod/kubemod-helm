@@ -7,13 +7,15 @@ replicaCount: 1
 image:
   repository: kubemod/kubemod
   pullPolicy: IfNotPresent
-  tag: "v0.13.0"
+  tag: "v0.15.0"
 
 job:
+  # Deploy the KubeMod certificate generation job
+  enabled: true
   image:
     repository: kubemod/kubemod-crt
     pullPolicy: IfNotPresent
-    tag: "v1.1.1"
+    tag: "v1.2.0"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -70,6 +72,11 @@ affinity: {}
 
 # MutatingWebhookConfiguration
 webhook:
+  # Specify webhook annotations
+  # Can be used to populate caBundle from a cert-manager Certificate.
+  # See https://cert-manager.io/docs/concepts/ca-injector/#injecting-ca-data-from-a-certificate-resource
+  annotations:
+    cert-manager.io/inject-ca-from-secret: kubemod-system/webhook-server-cert
   # See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#mutatingwebhook-v1-admissionregistration-k8s-io
   failurePolicy: Ignore
   # See https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#labelselector-v1-meta

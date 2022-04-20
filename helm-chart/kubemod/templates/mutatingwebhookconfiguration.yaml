@@ -1,15 +1,27 @@
+{{- $caInjector := "" }}
+{{- range $k, $v := .Values.webhook.annotations }}
+{{- if has $k (list "cert-manager.io/inject-ca-from" "cert-manager.io/inject-ca-from-secret" "cert-manager.io/allow-direct-injection") }}
+{{- $caInjector = "true" }}
+{{- end }}
+{{- end }}
 apiVersion: admissionregistration.k8s.io/v1
 kind: MutatingWebhookConfiguration
 metadata:
   name: {{ include "kubemod.fullname" . }}-mutating-webhook-configuration
   labels:
     {{- include "kubemod.labels" . | nindent 4 }}
+  {{- with .Values.webhook.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
   creationTimestamp: null
 webhooks:
 - admissionReviewVersions:
   - v1beta1
   clientConfig:
+    {{- if ne $caInjector "true" }}
     caBundle: Cg==
+    {{- end }}
     service:
       name: {{ include "kubemod.fullname" . }}-webhook-service
       namespace: {{ .Release.Namespace }}
@@ -31,7 +43,9 @@ webhooks:
 - admissionReviewVersions:
   - v1beta1
   clientConfig:
+    {{- if ne $caInjector "true" }}
     caBundle: Cg==
+    {{- end }}
     service:
       name: {{ include "kubemod.fullname" . }}-webhook-service
       namespace: {{ .Release.Namespace }}
