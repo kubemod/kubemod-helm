@@ -16,3 +16,10 @@ Linting/validation uses the [helm/chart-testing tool](https://github.com/helm/ch
 ct lint --all --config ct.yaml
 ct install --all --config ct.yaml
 ```
+
+## Don't forget
+
+```
+# Make KubeMod ignore Kubernetes' system namespace.
+kubectl label namespace kube-system admission.kubemod.io/ignore=true --overwrite
+```
