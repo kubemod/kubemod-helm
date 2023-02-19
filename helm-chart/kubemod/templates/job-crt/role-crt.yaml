@@ -4,9 +4,6 @@ metadata:
   name: {{ include "kubemod.fullname" . }}-crt
   labels:
     {{- include "kubemod.labels" . | nindent 4 }}
-  annotations:
-    "helm.sh/hook": pre-install,pre-upgrade,post-install,post-upgrade
-    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
 rules:
 - apiGroups:
   - ""
@@ -27,9 +24,6 @@ metadata:
   name: {{ include "kubemod.fullname" . }}-crt
   labels:
     {{- include "kubemod.labels" . | nindent 4 }}
-  annotations:
-    "helm.sh/hook": pre-install,pre-upgrade,post-install,post-upgrade
-    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -47,9 +41,6 @@ metadata:
   name: {{ include "kubemod.fullname" . }}-crt
   labels:
     {{- include "kubemod.labels" . | nindent 4 }}
-  annotations:
-    "helm.sh/hook": pre-install,pre-upgrade,post-install,post-upgrade
-    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
 rules:
 - apiGroups:
   - admissionregistration.k8s.io
@@ -74,9 +65,6 @@ metadata:
   name: {{ include "kubemod.fullname" . }}-crt
   labels:
     {{- include "kubemod.labels" . | nindent 4 }}
-  annotations:
-    "helm.sh/hook": pre-install,pre-upgrade,post-install,post-upgrade
-    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
