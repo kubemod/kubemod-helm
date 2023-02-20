@@ -24,7 +24,7 @@ ct install --all --config ct.yaml
 kubectl label namespace kube-system admission.kubemod.io/ignore=true --overwrite
 ```
 
-# Ignore webhooks differences when using ArgoCD
+## Ignore webhooks differences when using ArgoCD
 ```
 ignoreDifferences:
 - kind: ValidatingWebhookConfiguration
