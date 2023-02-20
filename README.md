@@ -23,3 +23,16 @@ ct install --all --config ct.yaml
 # Make KubeMod ignore Kubernetes' system namespace.
 kubectl label namespace kube-system admission.kubemod.io/ignore=true --overwrite
 ```
+
+# Ignore webhooks differences when using ArgoCD
+```
+ignoreDifferences:
+- kind: ValidatingWebhookConfiguration
+  group: admissionregistration.k8s.io
+  jqPathExpressions:
+  - '.webhooks[]?.clientConfig.caBundle'
+- kind: MutatingWebhookConfiguration
+  group: admissionregistration.k8s.io
+  jqPathExpressions:
+  - '.webhooks[]?.clientConfig.caBundle'
+```
