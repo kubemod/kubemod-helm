@@ -13,7 +13,7 @@ webhooks:
       name: {{ include "kubemod.fullname" . }}-webhook-service
       namespace: {{ .Release.Namespace }}
       path: /mutate-api-kubemod-io-v1beta1-modrule
-  failurePolicy: Fail
+  failurePolicy: {{ .Values.webhook.failurePolicy }}
   name: mmodrule.kubemod.io
   rules:
   - apiGroups:
@@ -63,7 +63,7 @@ webhooks:
       name: kubemod-webhook-service
       namespace: kubemod-system
       path: /podbinding-webhook
-  failurePolicy: Fail
+  failurePolicy: {{ .Values.webhook.failurePolicy }}
   name: podbinding.kubemod.io
   namespaceSelector:
     matchExpressions:
