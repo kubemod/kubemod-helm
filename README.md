@@ -17,9 +17,22 @@ ct lint --all --config ct.yaml
 ct install --all --config ct.yaml
 ```
 
-## Don't forget
+## Ignore kubemod-system namespace before installing the cart
 
 ```
 # Make KubeMod ignore Kubernetes' system namespace.
-kubectl label namespace kube-system admission.kubemod.io/ignore=true --overwrite
+kubectl label namespace kubemod-system admission.kubemod.io/ignore=true --overwrite
+```
+
+## Ignore webhooks differences when using ArgoCD
+```
+ignoreDifferences:
+- kind: ValidatingWebhookConfiguration
+  group: admissionregistration.k8s.io
+  jqPathExpressions:
+  - '.webhooks[]?.clientConfig.caBundle'
+- kind: MutatingWebhookConfiguration
+  group: admissionregistration.k8s.io
+  jqPathExpressions:
+  - '.webhooks[]?.clientConfig.caBundle'
 ```
