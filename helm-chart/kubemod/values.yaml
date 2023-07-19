@@ -7,13 +7,13 @@ replicaCount: 1
 image:
   repository: kubemod/kubemod
   pullPolicy: IfNotPresent
-  tag: "v0.13.0"
+  tag: "v0.19.1"
 
 job:
   image:
     repository: kubemod/kubemod-crt
     pullPolicy: IfNotPresent
-    tag: "v1.1.1"
+    tag: "v1.3.0"
 
 imagePullSecrets: []
 nameOverride: ""

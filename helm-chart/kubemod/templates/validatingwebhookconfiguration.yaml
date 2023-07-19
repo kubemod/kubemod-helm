@@ -14,7 +14,7 @@ webhooks:
       name: {{ include "kubemod.fullname" . }}-webhook-service
       namespace: {{ .Release.Namespace }}
       path: /validate-api-kubemod-io-v1beta1-modrule
-  failurePolicy: Fail
+  failurePolicy: {{ .Values.webhook.failurePolicy }}
   name: vmodrule.kubemod.io
   rules:
   - apiGroups:
