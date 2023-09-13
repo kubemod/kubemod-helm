@@ -16,3 +16,23 @@ Linting/validation uses the [helm/chart-testing tool](https://github.com/helm/ch
 ct lint --all --config ct.yaml
 ct install --all --config ct.yaml
 ```
+
+## Ignore kubemod-system namespace before installing the cart
+
+```
+# Make KubeMod ignore Kubernetes' system namespace.
+kubectl label namespace kubemod-system admission.kubemod.io/ignore=true --overwrite
+```
+
+## Ignore webhooks differences when using ArgoCD
+```
+ignoreDifferences:
+- kind: ValidatingWebhookConfiguration
+  group: admissionregistration.k8s.io
+  jqPathExpressions:
+  - '.webhooks[]?.clientConfig.caBundle'
+- kind: MutatingWebhookConfiguration
+  group: admissionregistration.k8s.io
+  jqPathExpressions:
+  - '.webhooks[]?.clientConfig.caBundle'
+```
