@@ -84,15 +84,15 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       topologySpreadConstraints:
-      - labelSelector:
-          matchLabels:
-            {{- include "kubemod.selectorLabels" . | nindent 12 }}
-        maxSkew: 1
-        topologyKey: topology.kubernetes.io/zone
-        whenUnsatisfiable: ScheduleAnyway
-      - labelSelector:
-          matchLabels:
-            {{- include "kubemod.selectorLabels" . | nindent 12 }}
-        maxSkew: 1
-        topologyKey: kubernetes.io/hostname
-        whenUnsatisfiable: DoNotSchedule
+        - labelSelector:
+            matchLabels:
+              {{- include "kubemod.selectorLabels" . | nindent 12 }}
+          maxSkew: 1
+          topologyKey: topology.kubernetes.io/zone
+          whenUnsatisfiable: ScheduleAnyway
+        - labelSelector:
+            matchLabels:
+              {{- include "kubemod.selectorLabels" . | nindent 12 }}
+          maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: DoNotSchedule
