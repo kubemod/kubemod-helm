@@ -16,7 +16,7 @@ spec:
         - /bin/sh
         - -c
         - ./cert-renew.sh
-        image: kubemod/kubemod-crt:v1.3.0
+        image: "{{ .Values.job.image.repository }}:{{ .Values.job.image.tag }}"
         name: kubemod-crt
       restartPolicy: Never
       serviceAccountName: {{ include "kubemod.serviceAccountName" . }}-crt
